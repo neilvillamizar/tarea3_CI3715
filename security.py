@@ -7,7 +7,7 @@ class security():
 		self.usr_number = 0
 
 	def verify_format(self, email):
-		regex = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+		regex = r'^\w+([!#\$%&\'\*\+-\/=\^_`\{\|\}~\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
 		if(re.search(regex,email)): 
 			return True
 		return False
