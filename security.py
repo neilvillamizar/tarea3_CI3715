@@ -49,8 +49,35 @@ class security():
 
 	def registrarUsuario(self, email, password1, password2):
 
-		if(not self.verify_formatEmail(email) or not self.verify_formatPassword(password1)):
-			print("Correo electrónico inválido y/o Clave inválida")
+		if(not self.verify_formatEmail(email)):
+			print("Correo electrónico inválido.")
 			return False
 
+		if(not self.verify_formatPassword(password1)):
+			print("Clave invalida.")
+			return False
+
+		if(password1 != password2):
+			print("Las claves no coinciden.")
+			return False
+
+		self.dic[ email ] = password1[::-1]
+
+		return True
+
+	def ingresarUsuario(self, email, password):
+
+		if(not self.verify_formatEmail(email)):
+			print("Correo electrónico inválido.")
+			return False
+
+		if(not self.verify_formatPassword(password)):
+			print("Clave invalida.")
+			return False
+
+		if( not (email in self.dic) or (self.dic[ email ] != password[::-1])):
+			print("Usuario invalido.")
+			return False
+
+		print("Usuario aceptado.")
 		return True
