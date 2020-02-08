@@ -34,6 +34,21 @@ class securityTester( unittest.TestCase ):
 
     def testEmailNotOK4( self ):
         self.assertFalse( self.sec.registrarUsuario("correo.gmail.@gmail.com","Clave1234","Clave1234"))
+    
+    def testEmailOkNotPasswordNotLetter(self):
+        self.assertFalse(self.sec.registrarUsuario("correo@gmail.com", "123456789", "123456789"))
+    
+    def testEmailOkNotPasswordNoDigit(self):
+        self.assertFalse(self.sec.registrarUsuario("correo@gmail.com", "Claveyeah", "Claveyeah"))
+    
+    def testEmailOkNotPasswordNotUppercase(self):
+        self.assertFalse(self.sec.registrarUsuario("correo@gmail.com", "claveyeah123", "claveyeah123"))
+    
+    def testEmailOkNotPasswordTooLong(self):
+        self.assertFalse(self.sec.registrarUsuario("correo@gmail.com", "Claveyeahimmaw123", "Claveyeahimmaw123"))
+    
+    def testEmailOkNotPasswordLessThan3Letters(self):
+        self.assertFalse(self.sec.registrarUsuario("correo@gmail.com", "Cl12345678", "Cl12345678"))
 
 if __name__ == "__main__":
     unittest.main() # run all test 
